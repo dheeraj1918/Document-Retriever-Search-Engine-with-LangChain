@@ -6,9 +6,13 @@ import tempfile
 import os
 import traceback
 from openai import OpenAI
+from dotenv import load_dotenv
+import os
+load_dotenv()
+openAiApi = os.getenv('openAiApi')
 client = OpenAI(
     base_url="https://router.huggingface.co/v1",
-    api_key="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"
+    api_key=openAiApi
 )
 def upload(app):
     @app.route("/uploadFiles",methods=["GET","POST"])
