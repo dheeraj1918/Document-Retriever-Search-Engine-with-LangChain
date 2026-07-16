@@ -1,8 +1,12 @@
 from generatingEmbedding import embeddingManager
 from pymongo import MongoClient
 import certifi
+from dotenv import load_dotenv
+import os
+load_dotenv()
+db_url = os.getenv('MongodbApi')
 def get_query_results(query,file_id):
-    client=MongoClient( "mongodb+srv://srisaisank01_db_user:312pF3ylJWPv2VNW@rag.esicypb.mongodb.net/?appName=RAG",
+    client=MongoClient( db_url,
         tlsCAFile=certifi.where())
     collection = client["RAG_TEST_1"]["documents"]
     query_embedding=embeddingManager.generate_embedding(query)
