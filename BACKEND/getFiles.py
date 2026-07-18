@@ -1,5 +1,6 @@
 from flask import request,jsonify
 from fileLoader import file_loader
+from getCsvFiles import getCsvFiles
 from generatingEmbedding import generate_Embedding
 from vectorSearch import get_query_results
 import tempfile
@@ -26,9 +27,13 @@ def upload(app):
         allDocuments=[]
         for file in files:
             extension = os.path.splitext(file.filename)[1]
+            print(extension)
             with tempfile.NamedTemporaryFile(delete=False,suffix=extension) as temp:
                 file.save(temp.name)
-                documents=file_loader(temp.name)
+                if(extension==".pdf"):
+                    documents=file_loader(temp.name) #for pdf
+                elif(extension==".csv"):
+                    documents=getCsvFiles(temp.name)#for csv files
                 allDocuments.extend(documents)
             os.remove(temp.name)
         file_id=generate_Embedding(allDocuments)
