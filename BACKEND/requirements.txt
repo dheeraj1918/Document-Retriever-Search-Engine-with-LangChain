@@ -9,4 +9,4 @@ langchain_text_splitters
 pypdf
 openai
 python-dotenv
-gunicorn
+gunicorn==23.0.0
