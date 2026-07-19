@@ -12,7 +12,7 @@ const Query = () => {
     console.log(localStorage.getItem("file_id"))
     const file_id=localStorage.getItem("file_id")
     try {
-      const res = await fetch("http://127.0.0.1:5000/uploadQuery", {
+      const res = await fetch("https://rag-zmjw.onrender.com/uploadQuery", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
